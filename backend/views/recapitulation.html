@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presensi Bulanan</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .noBorder {
+            border:none !important;
+        }
+    </style>
+</head>
+<body>
+    <center><H3>REKAPITULASI ABSENSI KARYAWAN</H3></center>
+    <!-- <img src="http://localhost:3000/assets/checked.png" alt="Logo" style="width: 100px; height: auto;"> -->
+
+    <table style="border: none;">
+        <tr>
+            <td class="noBorder" style="text-align: left; width: 15%;">Nama</td>
+            <td class="noBorder" style="text-align: left; width: 5%;">:</td>
+            <td class="noBorder" style="text-align: left;"><%= user.name %></td>
+        </tr>
+        <tr>
+            <td class="noBorder" style="text-align: left; width: 15%">Bulan / Tahun</td>
+            <td class="noBorder" style="text-align: left; width: 5%;">:</td>
+            <td class="noBorder" style="text-align: left;"><%= yearMonthFormatted %></td>
+        </tr>
+    </table>
+
+    <table style="margin-top: 16px;">
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Hadir</th>
+                <th>Izin</th>
+                <th>Absen</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% attendanceData.forEach(row => { %>
+                <tr>
+                    <td><%= row.date %></td>
+                    <td>
+                        <% if (row.hadir) { %>
+                            <img src="<%= baseUrl %>/assets/checked.png" alt="Checked Icon" style="width: 16px; height: 16px;" />
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (row.izin) { %>
+                            <img src="<%= baseUrl %>/assets/checked.png" alt="Checked Icon" style="width: 16px; height: 16px;" />
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (row.absen) { %>
+                            <img src="<%= baseUrl %>/assets/checked.png" alt="Checked Icon" style="width: 16px; height: 16px;" />
+                        <% } %>
+                    </td>
+                    <td><%= row.keterangan %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
